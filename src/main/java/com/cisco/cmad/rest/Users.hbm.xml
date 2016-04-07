@@ -2,7 +2,7 @@
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
-	<class name="com.cisco.cmad.model.Users" table="USERS" schema="APP" >
+	<class name="com.cisco.cmad.rest.Users" table="USERS" schema="APP" >
 		<!-- <cache usage="read-write" /> -->
 		<id name="id" type="int">
 			<column name="ID" />
