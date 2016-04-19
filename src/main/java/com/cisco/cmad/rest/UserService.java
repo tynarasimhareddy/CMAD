@@ -83,6 +83,7 @@ public class UserService {
 	
 	public void addUser(){
 		System.out.println("NTY executing test case - addUser");
+		System.out.println("Dummy check-in");
 		Users user = new Users();
 		user.setName("T Y Narasimha Reddy");
 		user.setAge(27);
