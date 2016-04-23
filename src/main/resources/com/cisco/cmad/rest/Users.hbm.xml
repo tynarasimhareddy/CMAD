@@ -27,7 +27,7 @@
 			<column name="STATE" length="2" />
 		</property>
 	</class>
-	<class name="com.cisco.cmad.blog.model.Users" table="users" schema="blog" >
+	<class name="com.cisco.cmad.blog.model.BlogUsers" table="users" schema="blog" >
 		<id name="userName" type="string">
 			<column name="userName" length="100"/>
 		</id>

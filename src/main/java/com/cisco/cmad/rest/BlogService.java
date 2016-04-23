@@ -1,4 +1,4 @@
-package com.cisco.cmad.blog.service;
+package com.cisco.cmad.rest;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -12,19 +12,19 @@ import com.cisco.cmad.blog.dao.PostsDAO;
 import com.cisco.cmad.blog.dao.UsersDAO;
 import com.cisco.cmad.blog.dao.impl.PostsDAOImpl;
 import com.cisco.cmad.blog.dao.impl.UsersDAOImpl;
-import com.cisco.cmad.blog.model.Users;
+import com.cisco.cmad.blog.model.BlogUsers;
 
 @Path("/blog")
 public class BlogService {
 
 	private UsersDAO usersDao = null;
 	private PostsDAO postsDao = null;
-	BlogService(){
+	public BlogService(){
 		usersDao = new UsersDAOImpl();
 		postsDao = new PostsDAOImpl();
 	}
 
-	BlogService(UsersDAO usersDao, PostsDAO postsDao){
+	public BlogService(UsersDAO usersDao, PostsDAO postsDao){
 		this.usersDao = usersDao;
 		this.postsDao = postsDao;
 	}
@@ -32,14 +32,14 @@ public class BlogService {
 	@POST
 	@Path("/signUp")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createUser(Users user){
+	public void createUser(BlogUsers user){
 		usersDao.addUser(user);
 	}
 	
 	@GET
 	@Path("/{userName}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Users getUser(@PathParam("userName") String userName){
+	public BlogUsers getUser(@PathParam("userName") String userName){
 		return usersDao.getUser(userName);
 	}
 	

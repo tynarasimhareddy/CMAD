@@ -6,12 +6,12 @@ import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
 import com.cisco.cmad.blog.dao.UsersDAO;
-import com.cisco.cmad.blog.model.Users;
+import com.cisco.cmad.blog.model.BlogUsers;
 import com.cisco.cmad.rest.HibernateUtil;
 
 public class UsersDAOImpl implements UsersDAO {
 
-	public void addUser(Users user) {
+	public void addUser(BlogUsers user) {
 		Session session = HibernateUtil.currentSession();
 		try{
 			Transaction tx = session.beginTransaction();
@@ -22,13 +22,13 @@ public class UsersDAOImpl implements UsersDAO {
 		}
 	}
 
-	public Users getUser(String userName) {
+	public BlogUsers getUser(String userName) {
 		Session session = HibernateUtil.currentSession();
-		Users result = null;
+		BlogUsers result = null;
 		try{
-			Criteria crit =  session.createCriteria(Users.class);
+			Criteria crit =  session.createCriteria(BlogUsers.class);
 			crit.add(Restrictions.idEq(userName));
-			result = (Users) crit.uniqueResult();
+			result = (BlogUsers) crit.uniqueResult();
 		}finally{
 			HibernateUtil.closeSession();
 		}

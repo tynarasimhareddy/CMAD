@@ -13,6 +13,10 @@
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>com.cisco.cmad.rest</param-value>
 		</init-param>
+		<!-- <init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>com.cisco.cmad.blog.service</param-value>
+		</init-param> -->
 		<init-param>
 			<param-name>jersey.config.server.provider.scanning.recursive</param-name>
 			<param-value>true</param-value>

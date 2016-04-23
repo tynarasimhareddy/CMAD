@@ -1,9 +1,9 @@
 package com.cisco.cmad.blog.dao;
 
-import com.cisco.cmad.blog.model.Users;
+import com.cisco.cmad.blog.model.BlogUsers;
 
 public interface UsersDAO {
 
-	public void addUser(Users user);
-	public Users getUser(String userName);
+	public void addUser(BlogUsers user);
+	public BlogUsers getUser(String userName);
 }

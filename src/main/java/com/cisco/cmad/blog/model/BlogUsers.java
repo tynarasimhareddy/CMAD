@@ -1,13 +1,15 @@
 package com.cisco.cmad.blog.model;
 
-public class Users {
+public class BlogUsers {
 	
 	private String userName  = null;
 	private String emailId  = null;
 	private String pswd  = null;
 	
-	public Users(String userName, String emailId, String pswd) {
-		super();
+	public BlogUsers() {
+		// TODO Auto-generated constructor stub
+	}
+	public BlogUsers(String userName, String emailId, String pswd) {
 		this.userName = userName;
 		this.emailId = emailId;
 		this.pswd = pswd;

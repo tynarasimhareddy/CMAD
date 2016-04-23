@@ -10,6 +10,10 @@ public class Posts {
 	Date date = null;
 	String author = null;
 	
+	public Posts() {
+		// TODO Auto-generated constructor stub
+	}
+	
 	public Posts(Integer postId, String title, String body, Date date, String author) {
 		this(postId, title, body, author);
 		this.date = date;
