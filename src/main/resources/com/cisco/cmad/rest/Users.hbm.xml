@@ -27,4 +27,33 @@
 			<column name="STATE" length="2" />
 		</property>
 	</class>
+	<class name="com.cisco.cmad.blog.model.Users" table="users" schema="blog" >
+		<id name="userName" type="string">
+			<column name="userName" length="100"/>
+		</id>
+		<property name="emailId" type="string">
+			<column name="emailId" length="100" />
+		</property>
+		<property name="pswd" type="string">
+			<column name="password" length="100" />
+		</property>
+	</class>
+	<class name="com.cisco.cmad.blog.model.Posts" table="posts" schema="blog" >
+		<id name="postId" type="int">
+			<column name="postId" />
+			<generator class="native" />
+		</id>
+		<property name="title" type="string">
+			<column name="title" length="100" />
+		</property>
+		<property name="body" type="string">
+			<column name="body" />
+		</property>
+		<property name="date" type="timestamp">
+			<column name="date" length="29" />
+		</property>
+		<property name="author" type="string">
+			<column name="author" length="100" />
+		</property>
+	</class>
 </hibernate-mapping>
