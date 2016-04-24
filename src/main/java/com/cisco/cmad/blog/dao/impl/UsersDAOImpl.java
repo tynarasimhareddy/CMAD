@@ -34,5 +34,15 @@ public class UsersDAOImpl implements UsersDAO {
 		}
 		return result;
 	}
+	
+	public BlogUsers validateUser(String userName, String pswd){
+		BlogUsers user = getUser(userName);
+		if(null != user){
+			if(user.getPswd().equals(pswd)){
+				return user;
+			}
+		}
+		return null;
+	}
 
 }

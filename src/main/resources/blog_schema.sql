@@ -13,7 +13,7 @@ CREATE TABLE posts(
 	postId integer  NOT NULL AUTO_INCREMENT,
 	title varchar(100) NOT NULL,
 	body text not null,
-	date datetime DEFAULT CURRENT_TIMESTAMP,
+	date datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 	author varchar(100) not null,
 	PRIMARY KEY (postId),
 	FOREIGN KEY (author) REFERENCES blog.users(userName) ON DELETE RESTRICT ON UPDATE RESTRICT

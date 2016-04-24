@@ -4,11 +4,11 @@ import java.util.Date;
 
 public class Posts {
 
-	Integer postId = null;
-	String title = null;
-	String body = null;
-	Date date = null;
-	String author = null;
+	Integer postId ;
+	String title = "";
+	String body = "";
+	Date date ;
+	String author = "";
 	
 	public Posts() {
 		// TODO Auto-generated constructor stub
