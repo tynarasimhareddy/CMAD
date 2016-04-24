@@ -38,9 +38,20 @@ function login() {
 }
 
 function signup() {
-	alert(document.getElementById("userName").value);
-	alert(document.getElementById("password").value);
-	alert(document.getElementById("email").value);
+	var userName = document.getElementById("userName").value;
+	var password = document.getElementById("password").value;
+	var email = document.getElementById("email").value;
+	
+	if( null == userName || userName.length <= 0){
+		alert("UserName cannot be null.");
+		return;
+	} else if( null == password || password.length <= 0){
+		alert("password cannot be null.");
+		return;
+	} else if( null == email || email.length <= 0){
+		alert("email cannot be null.");
+		return;
+	}
 	
 	
 	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "emailId":document.getElementById("email").value, "pswd":document.getElementById("password").value});
