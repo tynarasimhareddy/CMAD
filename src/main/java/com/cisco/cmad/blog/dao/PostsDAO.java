@@ -9,4 +9,5 @@ public interface PostsDAO {
 	public void addPost(Posts post);
 	public List<Posts> getPosts(String userName);
 	public List<Posts> getAllPosts();
+	public Posts getPost(int postId);
 }
