@@ -10,6 +10,7 @@ import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 import com.cisco.cmad.blog.dao.PostsDAO;
 import com.cisco.cmad.blog.dao.UsersDAO;
@@ -41,7 +42,7 @@ public class BlogService {
 	}
 	
 	@GET
-	@Path("/{userName}")
+	@Path("/user/{userName}")
 	@Produces(MediaType.APPLICATION_JSON)
 	public BlogUsers getUser(@PathParam("userName") String userName){
 		return usersDao.getUser(userName);
@@ -62,11 +63,13 @@ public class BlogService {
 	@POST
 	@Path("/newPost")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void addPost(Posts post){
+	public Response addPost(Posts post){
 		if(null != usersDao.getUser(post.getAuthor())){
 			postsDao.addPost(post);
+			return Response.ok("Added the post Successfully").build();
 		}else{
 			System.out.println("Unknown author - "+post.getAuthor());
+			return Response.ok("Failed to add Post. Unknown author - "+post.getAuthor()).build();
 		}
 	}
 	
@@ -75,6 +78,22 @@ public class BlogService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Posts> getAllPosts(){
 		return postsDao.getAllPosts();
+	}
+	
+	@GET
+	@Path("/post/{postId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Posts getPost(@PathParam("postId") Integer postId){
+		
+		return postsDao.getPost(postId); 
+	}
+	
+	@GET
+	@Path("/posts/{userName}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Posts> getPosts(@PathParam("userName") String userName){
+		
+		return postsDao.getPosts(userName);
 	}
 	
 	/**

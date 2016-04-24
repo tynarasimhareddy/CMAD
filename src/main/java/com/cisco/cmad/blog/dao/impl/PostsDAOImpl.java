@@ -37,6 +37,19 @@ public class PostsDAOImpl implements PostsDAO {
 		}
 		return result;
 	}
+	
+	public Posts getPost(int postId){
+		Session session = HibernateUtil.currentSession();
+		Posts result = null;
+		try{
+			Criteria crit = session.createCriteria(Posts.class);
+			crit.add(Restrictions.idEq(postId));
+			result = (Posts)crit.uniqueResult();
+		}finally{
+			HibernateUtil.closeSession();
+		}
+		return result;
+	}
 
 	public List<Posts> getAllPosts() {
 		Session session = HibernateUtil.currentSession();
