@@ -3,7 +3,7 @@
 <body>
 <script src="scripts/jquery-2.1.3.js"></script>
 <Script>
-$(document).ready(function(){
+/* $(document).ready(function(){
 	$.get("rest/user", function(data){
 		var rowTemplate = $("#templates table").html();
 		console.log(rowTemplate);
@@ -15,9 +15,51 @@ $(document).ready(function(){
 			$("#users").append(row);
 		}
 	});
-});
+}); */
+
+function login() {
+	 
+	alert("Login clicked");
+	alert(document.getElementById("userName").value);
+	 
+	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "emailId":document.getElementById("email").value, "pswd":document.getElementById("password").value});
+	alert(data);
+
+      $.ajax({
+        type : "POST",
+        url : 'rest/blog/login',
+        dataType :"json",
+        contentType: "application/json",
+        data : data,
+        success : function(result) {
+          alert(result.success);
+		}, 
+	});	 
+}
+
+function signup() {
+	alert(document.getElementById("userName").value);
+	alert(document.getElementById("password").value);
+	alert(document.getElementById("email").value);
+	
+	
+	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "emailId":document.getElementById("email").value, "pswd":document.getElementById("password").value});
+	alert(data);
+	$.ajax({
+        type : "POST",
+        url : 'rest/blog/signUp',
+        dataType :"json",
+        contentType: "application/json",
+        data : data,
+        success : function(result) {
+          alert(result.success);
+		}, 
+	});
+	alert("SignUp clicked")
+}
+
 </script>
-<div id="templates" style="display: none;">
+<!-- <div id="templates" style="display: none;">
 	<table>
 		<tr><td>Name</td><td>Email-ID</td><td>JoinDate</td><td>Age</td></tr>
 	</table>
@@ -25,5 +67,29 @@ $(document).ready(function(){
 <table id="users" border=1>
 <tr><td>Name</td><td>Email-ID</td><td>JoinDate</td><td>Age</td></tr>
 </table>
+ -->
+<div class="sp-pp">
+  <div class="container">
+    <h2>Sign In</h2>
+    <label for="username">
+        <span data-text="Username">Username</span>
+    </label>
+    <input id="userName" type="text" id="username" required/>
+    
+    <label for="password">
+        <span data-text="Password">Password</span>
+    </label>
+    <input id="password" type="password" id="password" required/>
+	
+	<label for="email">
+        <span data-text="Email">Email</span>
+    </label>
+    <input id="email" type="text" id="password" required/>
+      
+  </div>
+</div>
+
+<input type='submit' name='do_login' onclick='login();' value='Login'>
+<input type='submit' name='do_register' onclick='signup();' value='Register'>
 </body>
 </html>
