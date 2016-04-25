@@ -18,14 +18,21 @@
 }); */
 
 function login() {
+	
+	var userName = document.getElementById("userName").value;
+	var password = document.getElementById("password").value;
 	 
-	alert("Login clicked");
-	alert(document.getElementById("userName").value);
+	if( null == userName || userName.length <= 0){
+		alert("UserName cannot be null.");
+		return;
+	} else if( null == password || password.length <= 0){
+		alert("password cannot be null.");
+		return;
+	} 
 	 
-	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "emailId":document.getElementById("email").value, "pswd":document.getElementById("password").value});
-	alert(data);
-
-      $.ajax({
+	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "pswd":document.getElementById("password").value});
+	
+    $.ajax({
         type : "POST",
         url : 'rest/blog/login',
         dataType :"json",
@@ -34,7 +41,8 @@ function login() {
         success : function(result) {
           alert(result.success);
 		}, 
-	});	 
+	});
+	alert("Login Successful")	
 }
 
 function signup() {
@@ -55,7 +63,7 @@ function signup() {
 	
 	
 	var data = JSON.stringify({ "userName":document.getElementById("userName").value, "emailId":document.getElementById("email").value, "pswd":document.getElementById("password").value});
-	alert(data);
+	
 	$.ajax({
         type : "POST",
         url : 'rest/blog/signUp',
@@ -66,7 +74,7 @@ function signup() {
           alert(result.success);
 		}, 
 	});
-	alert("SignUp clicked")
+	alert("SignUp Successful");
 }
 
 </script>
