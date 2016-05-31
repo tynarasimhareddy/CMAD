@@ -11,7 +11,7 @@
 		</servlet-class>
 		<init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>com.cisco.cmad.rest</param-value>
+			<param-value>com.cisco.cmad.rest.mongo</param-value>
 		</init-param>
 		<!-- <init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>

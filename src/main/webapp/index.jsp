@@ -110,6 +110,6 @@ function signup() {
 
 <input type='submit' name='do_login' onclick='login();' value='Login'>
 <input type='submit' name='do_register' onclick='signup();' value='Register'>
-ajunjnfkjdsnfkjsnf
+
 </body>
 </html>
