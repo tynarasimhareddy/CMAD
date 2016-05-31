@@ -58,4 +58,9 @@ public class BlogUsers {
 		this.pswd = pswd;
 	}
 	
+	@Override
+	public String toString(){
+		return "userName : "+userName+", emailId : "+emailId+", pswd : "+pswd;
+	}
+	
 }

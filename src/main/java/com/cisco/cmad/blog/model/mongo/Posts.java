@@ -73,5 +73,10 @@ public class Posts {
 		this.author = author;
 	}
 	
+	@Override
+	public String toString(){
+		return "title : "+title+", author : "+author+", date : "+date+", body : "+body;
+	}
+	
 	
 }

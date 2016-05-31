@@ -16,9 +16,11 @@ public class UsersDAOImpl implements UsersDAO {
 	public BlogUsers getUser(String userName) {
 		BlogUsers result = null;
 		Datastore ds = ServicesFactory.getMongoDB();
-		Query<BlogUsers> queryDs = ds.createQuery(BlogUsers.class);
-		queryDs.field("userName").equals(userName);
+		Query<BlogUsers> queryDs = ds.createQuery(BlogUsers.class).filter("userName ==", userName);
+//		queryDs.field("userName").equals(userName);
+		System.out.println("NTY result set of users returned from DB :"+queryDs.toString());
 		result = queryDs.get();
+		System.out.println("NTY result :"+result);
 		return result;
 	}
 	

@@ -18,7 +18,7 @@ public class PostsDAOImpl implements PostsDAO {
 	public List<Posts> getPosts(String userName) {
 		List<Posts> result = null;
 		Datastore ds = ServicesFactory.getMongoDB();
-		result = ds.createQuery(Posts.class).filter("author $eq", userName).asList();
+		result = ds.createQuery(Posts.class).filter("author ==", userName).asList();
 		return result;
 	}
 	
