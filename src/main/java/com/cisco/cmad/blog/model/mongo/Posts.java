@@ -13,14 +13,14 @@ public class Posts {
 	private ObjectId id;
 	String title = "";
 	String body = "";
-	Date date ;
+	String date = "";
 	String author = "";
 	
 	public Posts() {
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Posts(String title, String body, Date date, String author) {
+	public Posts(String title, String body, String date, String author) {
 		this(title, body, author);
 		this.date = date;
 		
@@ -57,11 +57,11 @@ public class Posts {
 		this.body = body;
 	}
 
-	public Date getDate() {
+	public String getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(String date) {
 		this.date = date;
 	}
 

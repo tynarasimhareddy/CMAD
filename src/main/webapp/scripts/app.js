@@ -24,7 +24,9 @@
 	
 	app.controller("HomeController",function($scope, $http, $log){
 
+		$scope.posts = [];
 		$scope.loadingPosts = true;
+		$scope.showNewPostForm = false;
 		var result = $http.get('rest/blog/viewPosts');
 		result.success(function(data, status, headers, config){
 			$scope.posts = data;
@@ -34,6 +36,16 @@
 				$scope.loadingPosts = false;
 				$scope.error = status;
 			});
+		
+		$scope.addPost = function(){
+			$http.post("rest/blog/newPost",$scope.post).success(function(data, status, headers, config){
+				$scope.post.date = "Just Now"
+				$scope.posts.push(angular.copy($scope.post));
+				$scope.showNewPostForm = false;
+			});
+		};
+		
+		
 	});
 	
 	app.controller("LoginController",function($scope, $http, $log){

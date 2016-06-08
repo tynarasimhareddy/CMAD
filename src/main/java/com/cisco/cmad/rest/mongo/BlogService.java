@@ -1,5 +1,6 @@
 package com.cisco.cmad.rest.mongo;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -65,6 +66,7 @@ public class BlogService {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response addPost(Posts post){
 		if(null != usersDao.getUser(post.getAuthor())){
+			post.setDate(new Date(System.currentTimeMillis()).toString());
 			postsDao.addPost(post);
 			return Response.ok("Added the post Successfully").build();
 		}else{
