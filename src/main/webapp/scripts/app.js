@@ -8,8 +8,8 @@
 						templateUrl : 'login.html',
 						controller : 'LoginController'
 					}).
-					when('/singup',{
-						templateUrl : 'singup.html',
+					when('/signup',{
+						templateUrl : 'signup.html',
 						controller : 'SignUpController'
 					}).
 					when('/home',{
