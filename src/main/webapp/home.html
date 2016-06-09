@@ -1,15 +1,49 @@
 <div ng-controller="HomeController">
 
-	<p align="center" ><a href="#/login">LOGIN</a></p>
-	<h1>My Blog</h1>
+	<p align="center" >
 
-	<div>
+		<div ng-show="showLoginOption">
+			<button ng-click="showLoginForm = true">Login</button>
+		</div>
+		<div ng-show="showLoginForm">
+			<form name="loginForm">
+				<h3>Please enter login details</h3>
+				<label>User Name  </label><input type="text" name="Title" ng-model="loginUser.userName"></input><br>
+				<label>Password  </label><input type="password" name="Author" ng-model="loginUser.pswd"></input><br>
+				<button ng-click="login()">Login</button>
+				<input type="button" value="Cancel" ng-click="showLoginForm = false;loginUser.userName=null;loginUser.pswd=null"></input>
+			</form>
+		</div>
+		
+		
+		<div ng-show="showSignUpOption">
+			<button ng-click="showSignupForm = true">SignUp</button>
+		</div>
+		<div ng-show="showSignupForm">
+			<form name="signupForm">
+				<h3>Please enter the new user details</h3>
+				<label>User Name  </label><input type="text" name="Title" ng-model="user.userName"></input><br>
+				<label>Password  </label><input type="password" name="Author" ng-model="user.pswd"></input><br>
+				<label>Email Id  </label><input type="text" name="Body" ng-model="user.emailId"></input><br>
+				<button ng-click="addUser()">SignUp</button>
+				<input type="button" value="Cancel" ng-click="showSignupForm = false;user.userName=null;user.pswd=null;user.emailId=null"></input>
+			</form>
+		</div>
+		
+		<div ng-show="showLogoutOption">
+			<button ng-click="logout()">LOGUT</button>
+		</div>
+
+	</p>
+	<h1>Welcome {{currentUser}}!!! to CMAD Project Blog</h1>
+
+	<div ng-show="showAddPostOption">
 		<button ng-click="showNewPostForm = true">Add New Post</button>
 	</div>
 	<div ng-show="showNewPostForm">
 		<form name="postForm">
 			<label>Title  </label><input type="text" name="Title" ng-model="post.title"></input><br>
-			<label>Author  </label><input type="text" name="Author" ng-model="post.author"></input><br>
+			<!-- <label>Author  </label><input type="text" name="Author" ng-model="post.author"></input><br> -->
 			<label>Description  </label><textarea type="text" name="Body" ng-model="post.body"></textarea><br>
 			<button ng-click="addPost()">Submit</button>
 			<input type="button" value="Cancel" ng-click="showNewPostForm = false;post.title=null;post.author=null;post.body=null"></input>
@@ -21,11 +55,11 @@
 	</div>
 	<div ng-repeat="post in posts">
 
-		
 			<h2>{{post.title}}</h2>
+			<br>
 			Posted {{post.date}} By {{post.author}}
 			<br>
-			
+			<br>
 			{{post.body}}
 			<hr>
 	</div>

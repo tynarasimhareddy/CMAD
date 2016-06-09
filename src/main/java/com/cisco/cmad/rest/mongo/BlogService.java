@@ -38,8 +38,20 @@ public class BlogService {
 	@POST
 	@Path("/signUp")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public void createUser(BlogUsers user){
-		usersDao.addUser(user);
+	public String createUser(BlogUsers user){
+		try{
+			if(null == usersDao.getUser(user.getUserName())){
+				usersDao.addUser(user);
+				return "Added the User Successfully";
+			}else{
+				return "Failed to add the User. User is already exist in the system";
+			}
+			
+			
+		}catch(Exception e){
+			return "Failed to add the User. "+e.getMessage();
+		}
+		
 	}
 	
 	@GET
@@ -51,27 +63,25 @@ public class BlogService {
 	
 	@POST
 	@Path("/login")
-	public Boolean login(@QueryParam("userName")String userName, @QueryParam("password")String pswd){
-		System.out.println("UserName ="+userName+", password="+pswd);
-		BlogUsers user = usersDao.validateUser(userName, pswd);
-		if(null == user){
-			return false;
+	public String login(BlogUsers user){
+		System.out.println("UserName ="+user.getUserName()+", password="+user.getPswd());
+		if(null == usersDao.validateUser(user.getUserName(), user.getPswd())){
+			return "Failed to Login. Invalid access details";
 		}
-		
-		return true;
+		return "Logged in succesfully";
 	}
 	
 	@POST
 	@Path("/newPost")
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response addPost(Posts post){
+	public String addPost(Posts post){
 		if(null != usersDao.getUser(post.getAuthor())){
 			post.setDate(new Date(System.currentTimeMillis()).toString());
 			postsDao.addPost(post);
-			return Response.ok("Added the post Successfully").build();
+			return "Added the post Successfully";
 		}else{
 			System.out.println("Unknown author - "+post.getAuthor());
-			return Response.ok("Failed to add Post. Unknown author - "+post.getAuthor()).build();
+			return "Failed to add Post. Unknown author - "+post.getAuthor();
 		}
 	}
 	

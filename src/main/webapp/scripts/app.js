@@ -4,14 +4,6 @@
 	app.config(['$routeProvider',
 	            function($routeProvider){
 					$routeProvider.
-					when('/login',{
-						templateUrl : 'login.html',
-						controller : 'LoginController'
-					}).
-					when('/signup',{
-						templateUrl : 'signup.html',
-						controller : 'SignUpController'
-					}).
 					when('/home',{
 						templateUrl : 'home.html',
 						controller : 'HomeController'
@@ -27,6 +19,13 @@
 		$scope.posts = [];
 		$scope.loadingPosts = true;
 		$scope.showNewPostForm = false;
+		$scope.showSignupForm=false;
+		$scope.showLoginForm=false;
+		$scope.showAddPostOption = false;
+		$scope.showSignUpOption = true;
+		$scope.showLoginOption = true;
+		$scope.showLogoutOption = false;
+		$scope.currentUser = "Guest";
 		var result = $http.get('rest/blog/viewPosts');
 		result.success(function(data, status, headers, config){
 			$scope.posts = data;
@@ -38,27 +37,51 @@
 			});
 		
 		$scope.addPost = function(){
+			$scope.post.author = $scope.currentUser;
 			$http.post("rest/blog/newPost",$scope.post).success(function(data, status, headers, config){
-				$scope.post.date = "Just Now"
-				$scope.posts.push(angular.copy($scope.post));
-				$scope.showNewPostForm = false;
+				if(data == "Added the post Successfully"){
+					$scope.post.date = "Just Now";
+					$scope.posts.push(angular.copy($scope.post));
+					$scope.showNewPostForm = false;
+					$scope.post = {};
+				}
+				alert(data);
+				
 			});
 		};
 		
+		$scope.addUser = function(){
+			$http.post("rest/blog/signUp",$scope.user).success(function(data, status, headers, config){
+				$scope.user={};
+				$scope.showSignupForm=false;
+				alert(data);
+				});
+		};
+		
+		$scope.login = function(){
+			$http.post("rest/blog/login",$scope.loginUser).success(function(data, status, headers, config){
+				$scope.showLoginForm=false;
+				alert(data);
+				if(data == "Logged in succesfully"){
+					$scope.currentUser = $scope.loginUser.userName;
+					$scope.showAddPostOption = true;
+					$scope.showSignUpOption = false;
+					$scope.showLogoutOption = true;
+					$scope.showLoginOption = false;
+				}
+				$scope.loginUser={};
+				});
+		};
+		
+		$scope.logout = function(){
+			$scope.currentUser = "Guest";
+			$scope.showAddPostOption = false;
+			$scope.showSignUpOption = true;
+			$scope.showLoginOption = true;
+			$scope.showLogoutOption = false;
+			alert("Succesfully logged out");
+		};
 		
 	});
-	
-	app.controller("LoginController",function($scope, $http, $log){
-
-		
-	});
-	
-app.controller("SignUpController",function($scope, $http, $log){
-
-		
-	});
-	
-	
-	
 	
 })();
