@@ -1,11 +1,15 @@
 <div ng-controller="HomeController">
 
+	<marquee>
+		<h2>Welcome <font color="Red">{{currentUser}}</font>!!! to CMAD Project Blog</h2>
+	</marquee>
+	
 	<p align="center" >
 
-		<div ng-show="showLoginOption">
+		<div align="right" ng-show="showLoginOption">
 			<button ng-click="showLoginForm = true">Login</button>
 		</div>
-		<div ng-show="showLoginForm">
+		<div align="right" ng-show="showLoginForm">
 			<form name="loginForm">
 				<h3>Please enter login details</h3>
 				<label>User Name  </label><input type="text" name="Title" ng-model="loginUser.userName"></input><br>
@@ -16,10 +20,10 @@
 		</div>
 		
 		
-		<div ng-show="showSignUpOption">
+		<div align="right" ng-show="showSignUpOption">
 			<button ng-click="showSignupForm = true">SignUp</button>
 		</div>
-		<div ng-show="showSignupForm">
+		<div align="right" ng-show="showSignupForm">
 			<form name="signupForm">
 				<h3>Please enter the new user details</h3>
 				<label>User Name  </label><input type="text" name="Title" ng-model="user.userName"></input><br>
@@ -30,13 +34,12 @@
 			</form>
 		</div>
 		
-		<div ng-show="showLogoutOption">
+		<div align="right" ng-show="showLogoutOption">
 			<button ng-click="logout()">LOGUT</button>
 		</div>
 
 	</p>
-	<h1>Welcome {{currentUser}}!!! to CMAD Project Blog</h1>
-
+	
 	<div ng-show="showAddPostOption">
 		<button ng-click="showNewPostForm = true">Add New Post</button>
 	</div>

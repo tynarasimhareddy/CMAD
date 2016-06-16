@@ -76,6 +76,7 @@
 		$scope.logout = function(){
 			$scope.currentUser = "Guest";
 			$scope.showAddPostOption = false;
+			$scope.showNewPostForm = false;
 			$scope.showSignUpOption = true;
 			$scope.showLoginOption = true;
 			$scope.showLogoutOption = false;
