@@ -77,6 +77,11 @@ public class BlogService {
 	public String addPost(Posts post){
 		if(null != usersDao.getUser(post.getAuthor())){
 			post.setDate(new Date(System.currentTimeMillis()).toString());
+			String title = post.getTitle();
+			String permalink = title.replaceAll("\\s", "_"); // whitespace becomes _
+	        permalink = permalink.replaceAll("\\W", ""); // get rid of non alphanumeric
+	        permalink = permalink.toLowerCase();
+	        post.setPermalink(permalink);
 			postsDao.addPost(post);
 			return "Added the post Successfully";
 		}else{
@@ -93,11 +98,11 @@ public class BlogService {
 	}
 	
 	@GET
-	@Path("/post/{postId}")
+	@Path("/post/{permalink}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Posts getPost(@PathParam("postId") Integer postId){
+	public Posts getPost(@PathParam("permalink") String permalink){
 		
-		return postsDao.getPost(postId); 
+		return postsDao.getPost(permalink); 
 	}
 	
 	@GET
@@ -106,6 +111,14 @@ public class BlogService {
 	public List<Posts> getPosts(@PathParam("userName") String userName){
 		
 		return postsDao.getPosts(userName);
+	}
+	
+	@GET
+	@Path("/posts/search/{title}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Posts> searchPosts(@PathParam("title") String title){
+		
+		return postsDao.searchByTitle(title);
 	}
 	
 	/**

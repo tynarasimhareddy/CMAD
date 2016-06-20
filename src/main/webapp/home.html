@@ -4,6 +4,12 @@
 		<h2>Welcome <font color="Red">{{currentUser}}</font>!!! to CMAD Project Blog</h2>
 	</marquee>
 	
+	<div ng-show="showHomeForm">
+		<form name="homeForm">
+			<input type="button" value="HOME" ng-click="showAllPosts()"></input>
+		</form>
+	</div>
+	
 	<p align="center" >
 
 		<div align="right" ng-show="showLoginOption">
@@ -53,6 +59,17 @@
 			<input type="button" value="Cancel" ng-click="showNewPostForm = false;post.title=null;post.author=null;post.body=null"></input>
 		</form>
 	</div>
+	
+<!-- 	<div ng-show="showSearchOption">
+		<input ng-click="showSearchForm = true">Search</button>
+	</div> -->
+	<div ng-show="showSearchForm">
+		<form name="searchForm">
+			<label>Search  </label><input type="text" name="Search" ng-model="serachContent"></input><br>
+			<input type="button" value="Search" ng-click="searchPosts()"></input>
+		</form>
+	</div>
+	
 	
 	<div ng-show="loadingPosts">
 		<img src="images/loading.gif"></img>

@@ -9,5 +9,6 @@ public interface PostsDAO {
 	public void addPost(Posts post);
 	public List<Posts> getPosts(String userName);
 	public List<Posts> getAllPosts();
-	public Posts getPost(int postId);
+	public Posts getPost(String permalink);
+	public List<Posts> searchByTitle(String title);
 }

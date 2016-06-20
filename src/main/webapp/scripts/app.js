@@ -26,6 +26,8 @@
 		$scope.showLoginOption = true;
 		$scope.showLogoutOption = false;
 		$scope.currentUser = "Guest";
+		$scope.showSearchForm = true;
+		$scope.showHomeForm = true;
 		var result = $http.get('rest/blog/viewPosts');
 		result.success(function(data, status, headers, config){
 			$scope.posts = data;
@@ -81,6 +83,32 @@
 			$scope.showLoginOption = true;
 			$scope.showLogoutOption = false;
 			alert("Succesfully logged out");
+		};
+		
+		$scope.searchPosts = function(){
+			var result = $http.get('rest/blog/posts/search/'+$scope.serachContent);
+			result.success(function(data, status, headers, config){
+				$scope.posts = data;
+				$scope.loadingPosts = false;
+				$scope.serachContent = "";
+				});
+			result.error(function(data, status, headers, config){
+					$scope.loadingPosts = false;
+					$scope.error = status;
+					$scope.serachContent = "";
+				});
+		};
+		
+		$scope.showAllPosts = function(){
+			var result = $http.get('rest/blog/viewPosts');
+			result.success(function(data, status, headers, config){
+				$scope.posts = data;
+				$scope.loadingPosts = false;
+				});
+			result.error(function(data, status, headers, config){
+					$scope.loadingPosts = false;
+					$scope.error = status;
+				});
 		};
 		
 	});

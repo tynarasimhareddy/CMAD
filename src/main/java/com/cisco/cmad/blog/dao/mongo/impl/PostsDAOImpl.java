@@ -3,8 +3,10 @@ package com.cisco.cmad.blog.dao.mongo.impl;
 import java.util.List;
 
 import org.mongodb.morphia.Datastore;
+import org.mongodb.morphia.query.Query;
 
 import com.cisco.cmad.blog.dao.mongo.PostsDAO;
+import com.cisco.cmad.blog.model.mongo.BlogUsers;
 import com.cisco.cmad.blog.model.mongo.Posts;
 
 public class PostsDAOImpl implements PostsDAO {
@@ -22,9 +24,12 @@ public class PostsDAOImpl implements PostsDAO {
 		return result;
 	}
 	
-	public Posts getPost(int postId){
+	public Posts getPost(String permalink){
 		Posts result = null;
+		Datastore ds = ServicesFactory.getMongoDB();
 		
+		Query<Posts> queryDs = ds.createQuery(Posts.class).filter("permalink ==", permalink);
+		result = queryDs.get();
 		return result;
 	}
 
@@ -34,5 +39,15 @@ public class PostsDAOImpl implements PostsDAO {
 		result = ds.find(Posts.class).asList();
 		return result;
 	}
+	
+	public List<Posts> searchByTitle(String title) {
+		System.out.println("NTY searching for "+title);
+		List<Posts> result = null;
+		Datastore ds = ServicesFactory.getMongoDB();
+		result = ds.createQuery(Posts.class).field("title").containsIgnoreCase(title).asList();
+		System.out.println("NTY restult  = "+result);
+		return result;
+	}
+	
 
 }
