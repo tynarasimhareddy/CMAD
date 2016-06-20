@@ -27,7 +27,7 @@
 		$scope.showLogoutOption = false;
 		$scope.currentUser = "Guest";
 		$scope.showSearchForm = true;
-		$scope.showHomeForm = true;
+		$scope.showHomeForm = false;
 		var result = $http.get('rest/blog/viewPosts');
 		result.success(function(data, status, headers, config){
 			$scope.posts = data;
@@ -91,6 +91,7 @@
 				$scope.posts = data;
 				$scope.loadingPosts = false;
 				$scope.serachContent = "";
+				$scope.showHomeForm = true;
 				});
 			result.error(function(data, status, headers, config){
 					$scope.loadingPosts = false;
@@ -104,6 +105,7 @@
 			result.success(function(data, status, headers, config){
 				$scope.posts = data;
 				$scope.loadingPosts = false;
+				$scope.showHomeForm = false;
 				});
 			result.error(function(data, status, headers, config){
 					$scope.loadingPosts = false;
